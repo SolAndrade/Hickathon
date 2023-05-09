@@ -20,3 +20,13 @@ exports.addUser = async (req, res) => {
     res.status(500).json({ message: 'There was a problem adding the user. Please try again.' });
   }
 };
+
+exports.getUsers = async (req, res) => {
+    try {
+      const users = await User.findAll();
+      res.render('users', { users: users });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'There was a problem getting the users. Please try again.' });
+    }
+  };

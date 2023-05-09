@@ -1,8 +1,8 @@
-const pool = require('./config/database');
+const userRouter = require('./app/routes/userRouter');
+const path = require('path');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const userController = require('./app/controllers/userController');
 const mysql = require('mysql2');
 
 // Create a connection to the database
@@ -16,24 +16,21 @@ const connection = mysql.createConnection({
 // Middleware to parse JSON request bodies
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.urlencoded({ extended: false }));
 
-// Routes and other middleware go here
+app.set('views', path.join(__dirname, 'app/views'));
+app.set('view engine', 'ejs');
+
 
 // Start server
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
 
-app.post('/add-user', userController.addUser);
+//Home route
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/users/managerMenu.html');
+});
 
-
-// pool.query('SELECT * FROM users')
-//   .then(results => {
-//     const users = results[0];
-//     console.log(users);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
-// addUser();
+app.use('/', userRouter);
+app.use('/users', userRouter);
