@@ -1,50 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management System</title>
-</head>
-<body>
+<html>
+  <head>
+    <title>Add User</title>
+  </head>
+  <body>
     <h1>Add User</h1>
-  <form id="add-user-form">
-    <label>Name:</label>
-    <input type="text" name="name"><br><br>
-    <label>Email:</label>
-    <input type="email" name="email"><br><br>
-    <label>Password:</label>
-    <input type="password" name="password"><br><br>
-    <label>Role:</label>
-    <select name="role">
-      <option value="employee">Employee</option>
-      <option value="manager">Manager</option>
-    </select><br><br>
-    <button type="button" onclick="addUser()">Add User</button>
-  </form>
+    <form action="http://localhost:3000/add-user" method="POST">
+      <label for="name">Name:</label>
+      <input type="text" name="name" id="name" required><br><br>
 
-  <script>
-    function addUser() {
-      // Get form data
-      const form = document.getElementById('add-user-form');
-      const formData = new FormData(form);
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required><br><br>
 
-      // Send POST request to server
-      fetch('http://localhost:3000/add-user', {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        alert("added");
-        console.log('User added:', data);
-        // Handle success
-      })
-      .catch(error => {
-        console.error('Error adding user:', error);
-        // Handle error
-      });
-    }
-  </script>
-</body>
+      <label for="password">Password:</label>
+      <input type="password" name="password" id="password" required><br><br>
+
+      <label for="role">Role:</label>
+      <select name="role" id="role" required>
+        <option value="employee">Employee</option>
+        <option value="manager">Manager</option>
+      </select><br><br>
+
+      <label for="total_absence_days">Total Absence Days:</label>
+      <input type="number" name="total_absence_days" id="total_absence_days" value="23"><br><br>
+
+      <input type="submit" value="Add User">
+    </form>
+  </body>
 </html>

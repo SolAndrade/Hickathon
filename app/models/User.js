@@ -1,13 +1,35 @@
-const mongoose = require('mongoose');
+const { Sequelize, DataTypes } = require('sequelize');
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  role: { type: String, enum: ['employee', 'manager'], required: true },
-  total_absence_days: { type: Number, default: 23 },
+const sequelize = new Sequelize('Management', 'root', 'ironhack', {
+  host: 'localhost',
+  dialect: 'mysql'
 });
 
-const User = mongoose.model('User', userSchema);
+const User = sequelize.define('User', {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  role: {
+    type: DataTypes.ENUM('employee', 'manager'),
+    allowNull: false
+  },
+  total_absence_days: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 23
+  }
+}, {
+  timestamps: false
+});
 
 module.exports = User;
+
