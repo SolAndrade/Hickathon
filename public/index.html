@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management System</title>
+</head>
+<body>
+    <h1>Add User</h1>
+  <form id="add-user-form">
+    <label>Name:</label>
+    <input type="text" name="name"><br><br>
+    <label>Email:</label>
+    <input type="email" name="email"><br><br>
+    <label>Password:</label>
+    <input type="password" name="password"><br><br>
+    <label>Role:</label>
+    <select name="role">
+      <option value="employee">Employee</option>
+      <option value="manager">Manager</option>
+    </select><br><br>
+    <button type="button" onclick="addUser()">Add User</button>
+  </form>
+
+  <script>
+    function addUser() {
+      // Get form data
+      const form = document.getElementById('add-user-form');
+      const formData = new FormData(form);
+
+      // Send POST request to server
+      fetch('http://localhost:3000/add-user', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert("added");
+        console.log('User added:', data);
+        // Handle success
+      })
+      .catch(error => {
+        console.error('Error adding user:', error);
+        // Handle error
+      });
+    }
+  </script>
+</body>
+</html>
