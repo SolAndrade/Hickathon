@@ -57,18 +57,7 @@ exports.getAbsencesByUserId = async (req, res) => {
       res.status(500).send('Internal server error');
     }
   };
-
-//   const getEditAbsence = async (req, res) => {
-//     try {
-//       const absenceId = req.params.id;
-//       const absence = await Absence.findByPk(absenceId);
-//       res.render('edit', { absence });
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).send('An error occurred while getting the absence to edit.');
-//     }
-//   };
-
+  
 // Get edit absence form
 exports.getEditAbsence = async (req, res) => {
     try {

@@ -70,42 +70,6 @@ exports.getEditUser = async (req, res) => {
     }
   };
   
-// Get a user by their ID
-// exports.getUserById = async (req, res) => {
-//     try {
-//         const user = await User.findByPk(req.params.id);
-//         if (!user) {
-//           res.status(404).json({ message: 'User not found' });
-//         } else {
-//           res.render('edit', { user: user });
-//         }
-//       } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ message: 'There was a problem getting the user. Please try again.' });
-//       }
-//   };  
-  
-//   // Update a user by their ID
-//   exports.updateUserById = async (req, res) => {
-//     try {
-//       const user = await User.findByPk(req.params.id);
-//       if (!user) {
-//         res.status(404).json({ message: 'User not found' });
-//       } else {
-//         user.name = req.body.name;
-//         user.email = req.body.email;
-//         user.role = req.body.role;
-//         user.total_absence_days = req.body.total_absence_days;
-//         await user.save();
-//         res.redirect('/users');
-//       }
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ message: 'There was a problem updating the user. Please try again.' });
-//     }
-//   };
-  
-  
 // Delete a user and their associated absences by their ID
 exports.deleteUserById = async (req, res) => {
     try {
@@ -127,8 +91,6 @@ exports.deleteUserById = async (req, res) => {
     }
   };
   
-  
-
   exports.login = async (req, res) => {
     const { email, password } = req.body;
   

@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const absencesController = require('../controllers/absencesController');
-const absencesRouter = require('./absencesRouter');
-
 
 router.get('/', (req, res) => {
     res.render('login');
@@ -24,11 +22,6 @@ router.get('/users', userController.getUsers, (req, res) => {
     res.render('users');
 });
 
-// router.use('/users/:userId/absences', absencesRouter);
-
-// router.get('/users/:userId/absences', absencesController.getAbsences);
-
-
 // Render the add a new user page
 router.get('/users/create', (req, res) => {
     res.render('add');
@@ -37,13 +30,9 @@ router.get('/users/create', (req, res) => {
 // Add a new user
 router.post('/users', userController.addUser);
 
-
+// Route to update a specific user
 router.get('/users/:id/edit', userController.getEditUser);
 router.post('/users/:id', userController.postEditUser);
-
-// Edit an existing user
-
-// Route to update a specific user
 
 // DELETE user by id
 // router.post('/:id/delete', userController.deleteUserById);
@@ -51,16 +40,19 @@ router.post('/users/:id', userController.postEditUser);
 // Delete a user and their associated absences by their ID
 // router.delete('/:id/delete', userController.deleteUserById);
 
-
+//Absences
+// Route to get all the absences from a user
 router.get('/users/:userId/absences', absencesController.getAbsencesByUserId);
+// Route to add a new absence
 router.get('/absences/create', absencesController.getAddAbsenceForm);
 router.post('/absences', absencesController.addAbsence);
+// Route to get and update an absence
 router.get('/absences/:id/editAbsence', absencesController.getEditAbsence);
 router.post('/absences/:id/editAbsence', absencesController.postEditAbsence);
+// Route to get all the existing absences
 router.get('/absences', absencesController.getAllAbsences);
 // Route to update absence status to "approved"
 router.post('/absences/:id/approve', absencesController.approveAbsence);
-
 // Route to update absence status to "denied"
 router.post('/absences/:id/reject', absencesController.rejectAbsence);
 
