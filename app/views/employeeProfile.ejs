@@ -1,58 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Employee Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome <%= employee.name %>!</title>
     <style>
-      .container {
-  background-color: #FFFFFF;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
-}
-
-h1 {
-  color: #03256C;
-  font-size: 2em;
-  text-align: center;
-}
-
-.info {
-  margin: 30px 0;
-  text-align: center;
-}
-
-p {
-  color: #1768AC;
-  font-size: 1.2em;
-  margin: 10px 0;
-}
-
-button {
-  background-color: #06BEE1;
-  color: #FFFFFF;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #2541B2;
-}
-
+      body {
+        background-color: #FFFFFF;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #03256C;
+      }
+      h1 {
+        color: #06BEE1;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 50px;
+      }
+      p {
+        color: #2541B2;
+        font-size: 18px;
+        margin: 20px 0;
+      }
+      form {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+      }
+      input[type="submit"] {
+        background-color: #1768AC;
+        border: none;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      input[type="submit"]:hover {
+        background-color: #2541B2;
+      }
     </style>
   </head>
   <body>
     <h1>Welcome <%= employee.name %>!</h1>
-    <p>Name: <%= employee.name %></p>
-    <p>Email: <%= employee.email %></p>
-    <p>Role: <%= employee.role %></p>
-    <p>Total Absence Days: <%= employee.total_absence_days %></p>
-    <form action="/absences" method="GET">
-      <input type="hidden" name="employeeId" value="<%= employee.id %>">
+    <div class="employee-details">
+      <p>Name: <%= employee.name %></p>
+      <p>Email: <%= employee.email %></p>
+      <p>Role: <%= employee.role %></p>
+      <p>Total Absence Days: <%= employee.total_absence_days %></p>
+    </div>
+    <form action="/users/<%= employee.id %>/absences" method="GET">
       <input type="submit" value="Manage Absences">
     </form>
   </body>

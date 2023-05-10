@@ -75,6 +75,5 @@ async function createAbsence(user_id, start_date, end_date, reason) {
   }
 }
 
-
 createUser('jane', 'jane@example.com', 'password123', 'employee');
-// createUser('pablo', 'pablo@example.com', 'password123', 'manager');
+createUser('pablo', 'pablo@example.com', 'password123', 'manager');

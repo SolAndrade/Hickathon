@@ -1,58 +1,106 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <title>Absences</title>
-  <style>
-    /* Some basic styling for the table */
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-  </style>
-</head>
-<body>
-  <h1>Absences</h1>
-  <form action="/absences/create" method="GET">
-    <input type="hidden" name="employeeId" value="<%= userId %>">
-    <button type="submit">Add Absence</button>
-  </form>
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Reason</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-    <% absences.forEach(function(absence) { %>
-      <tr>
-        <td><%= absence.id %></td>
-        <td><%= absence.start_date %></td>
-        <td><%= absence.end_date %></td>
-        <td><%= absence.reason %></td>
-        <td><%= absence.status %></td>
-        <td>
-          <form action="/absences/<%= absence.id %>/editAbsence" method="GET">
-            <button type="submit">Edit</button>
-          </form>
-          <form action="/absences/<%= absence.id %>/deleteAbsence" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Delete</button>
-          </form>
-        </td>
-      </tr>
-    <% }); %>
-  </table>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Absences</title>
+    <style>
+      /* Global styles */
+      body {
+        background-color: #FFFFFF;
+        color: #03256C;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+  h1 {
+    font-size: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  /* Table styles */
+  table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  th, td {
+    border: 1px solid #2541B2;
+    padding: 1rem;
+    text-align: left;
+  }
+
+  th {
+    background-color: #06BEE1;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  tr:nth-child(even) {
+    background-color: #1768AC;
+    color: #FFFFFF;
+  }
+
+  tr:nth-child(odd) {
+    background-color: #FFFFFF;
+  }
+
+  /* Button styles */
+  button {
+    background-color: #06BEE1;
+    border: none;
+    border-radius: 0.25rem;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: #03256C;
+  }
+</style>
+  </head>
+  <body>
+    <h1>Absences</h1>
+    <form action="/absences/create" method="GET">
+      <input type="hidden" name="employeeId" value="<%= userId %>">
+      <button type="submit">Add Absence</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Reason</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% absences.forEach(function(absence) { %>
+          <tr>
+            <td><%= absence.id %></td>
+            <td><%= absence.start_date %></td>
+            <td><%= absence.end_date %></td>
+            <td><%= absence.reason %></td>
+            <td><%= absence.status %></td>
+            <td>
+              <form action="/absences/<%= absence.id %>/editAbsence" method="GET">
+                <button type="submit">Edit</button>
+              </form>
+              <form action="/absences/<%= absence.id %>/deleteAbsence" method="POST">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </body>
 </html>
