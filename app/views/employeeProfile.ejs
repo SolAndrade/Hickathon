@@ -1,60 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome <%= employee.name %>!</title>
     <style>
-      body {
-        background-color: #FFFFFF;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-        line-height: 1.6;
-        color: #03256C;
-      }
-      h1 {
-        color: #06BEE1;
-        font-size: 32px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 50px;
-      }
-      p {
-        color: #2541B2;
-        font-size: 18px;
-        margin: 20px 0;
-      }
-      form {
-        display: flex;
-        justify-content: center;
-        margin-top: 50px;
-      }
-      input[type="submit"] {
-        background-color: #1768AC;
-        border: none;
-        color: #FFFFFF;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 10px 20px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-      }
-      input[type="submit"]:hover {
-        background-color: #2541B2;
-      }
+        /* Styling for the Employee Dashboard */
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #03256C;
+        }
+
+        h1 {
+            color: #283c63;
+            font-size: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .employee-details {
+            margin: 0 auto;
+            max-width: 50%;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .employee-details p {
+            margin: 1rem 0;
+            color: #283c63;
+            font-size: 1.5rem;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        input[type="submit"] {
+            background-color: #283c63;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1c2947;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Welcome <%= employee.name %>!</h1>
     <div class="employee-details">
-      <p>Name: <%= employee.name %></p>
-      <p>Email: <%= employee.email %></p>
-      <p>Role: <%= employee.role %></p>
-      <p>Total Absence Days: <%= employee.total_absence_days %></p>
+        <p>Name: <%= employee.name %></p>
+        <p>Email: <%= employee.email %></p>
+        <p>Role: <%= employee.role %></p>
+        <p>Total Absence Days: <%= employee.total_absence_days %></p>
     </div>
     <form action="/users/<%= employee.id %>/absences" method="GET">
-      <input type="submit" value="Manage Absences">
+        <input type="submit" value="Manage Absences">
     </form>
-  </body>
+</body>
 </html>
