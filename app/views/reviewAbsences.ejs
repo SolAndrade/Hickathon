@@ -1,0 +1,204 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Users</title>
+</head>
+<body>
+    <h1>All Absences</h1>
+    <ul>
+      <% absences.forEach(absence => { %>
+        <li>
+          <p>User ID: <%= absence.user_id %></p>
+          <p>Start Date: <%= absence.start_date %></p>
+          <p>End Date: <%= absence.end_date %></p>
+          <p>Reason: <%= absence.reason %></p>
+          <p>Status: <%= absence.status %></p>
+        </li>
+      <% }) %>
+    </ul>
+</body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Absences</title>
+  <style>
+    /* Global styles */
+    body {
+      background-color: #FFFFFF;
+      color: #03256C;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+/* List styles */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 1px solid #2541B2;
+  background-color: #FFFFFF;
+}
+
+li:nth-child(even) {
+  background-color: #1768AC;
+  color: #FFFFFF;
+}
+
+/* Button styles */
+button {
+  background-color: #06BEE1;
+  border: none;
+  border-radius: 0.25rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: #03256C;
+}
+  </style>
+</head>
+<body>
+  <h1>All Absences</h1>
+  <form action="/absences/create" method="GET">
+    <button>Add Absence</button>
+  </form>
+  <ul>
+    <% absences.forEach(absence => { %>
+      <li>
+        <p>User ID: <%= absence.user_id %></p>
+        <p>Start Date: <%= absence.start_date %></p>
+        <p>End Date: <%= absence.end_date %></p>
+        <p>Reason: <%= absence.reason %></p>
+        <p>Status: <%= absence.status %></p>
+        <form action="/absences/<%= absence.id %>/review" method="GET">
+          <button>Edit</button>
+        </form>
+        <form action="/absences/<%= absence.id %>/delete" method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button>Delete</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Absences</title>
+  <style>
+    /* Global styles */
+    body {
+      background-color: #FFFFFF;
+      color: #03256C;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    /* Table styles */
+    table {
+      border-collapse: collapse;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    th, td {
+      border: 1px solid #2541B2;
+      padding: 1rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #06BEE1;
+      color: #FFFFFF;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1768AC;
+      color: #FFFFFF;
+    }
+
+    tr:nth-child(odd) {
+      background-color: #FFFFFF;
+    }
+
+    /* Button styles */
+    button {
+      background-color: #06BEE1;
+      border: none;
+      border-radius: 0.25rem;
+      color: #FFFFFF;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #03256C;
+    }
+  </style>
+</head>
+<body>
+  <h1>All Absences</h1>
+  <table>
+    <tr>
+      <th>User ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <% absences.forEach(absence => { %>
+      <tr>
+        <td><%= absence.user_id %></td>
+        <td><%= absence.start_date %></td>
+        <td><%= absence.end_date %></td>
+        <td><%= absence.reason %></td>
+        <td><%= absence.status %></td>
+        <td>
+          <form method="POST" action="/absences/<%= absence.id %>/approve">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="status" value="approved">
+            <button>Approve</button>
+          </form>
+          <form method="POST" action="/absences/<%= absence.id %>/reject">
+            <input type="hidden" name="_method" value="PATCH">
+            <input type="hidden" name="status" value="rejected">
+            <button>Reject</button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</body>
+</html>

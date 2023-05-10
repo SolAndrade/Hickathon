@@ -57,6 +57,12 @@ router.get('/absences/create', absencesController.getAddAbsenceForm);
 router.post('/absences', absencesController.addAbsence);
 router.get('/absences/:id/editAbsence', absencesController.getEditAbsence);
 router.post('/absences/:id/editAbsence', absencesController.postEditAbsence);
+router.get('/absences', absencesController.getAllAbsences);
+// Route to update absence status to "approved"
+router.post('/absences/:id/approve', absencesController.approveAbsence);
+
+// Route to update absence status to "denied"
+router.post('/absences/:id/reject', absencesController.rejectAbsence);
 
 module.exports = router;
 
