@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add Absence</title>
+</head>
+<body>
+  <h1>Add Absence</h1>
+  <form action="/absences" method="post">
+    <input type="hidden" name="userId" value="<%= userId %>">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate"><br>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate"><br>
+    <label for="reason">Reason:</label>
+    <input type="text" id="reason" name="reason"><br>
+    <input type="submit" value="Add Absence">
+  </form>
+</body>
+</html>
+

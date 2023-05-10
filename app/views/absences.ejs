@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Absences</title>
+  <style>
+    /* Some basic styling for the table */
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Absences</h1>
+  <form action="/absences/create" method="GET">
+    <input type="hidden" name="employeeId" value="<%= userId %>">
+    <button type="submit">Add Absence</button>
+  </form>
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Reason</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    <% absences.forEach(function(absence) { %>
+      <tr>
+        <td><%= absence.id %></td>
+        <td><%= absence.start_date %></td>
+        <td><%= absence.end_date %></td>
+        <td><%= absence.reason %></td>
+        <td><%= absence.status %></td>
+        <td>
+          <form action="/absences/<%= absence.id %>/editAbsence" method="GET">
+            <button type="submit">Edit</button>
+          </form>
+          <form action="/absences/<%= absence.id %>/deleteAbsence" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">Delete</button>
+          </form>
+        </td>
+      </tr>
+    <% }); %>
+  </table>
+</body>
+</html>

@@ -22,6 +22,9 @@
 </head>
 <body>
   <h1>All Users</h1>
+  <form action="/users/create" method="GET">
+    <button>Add User</button>
+  </form>
   <table>
     <tr>
       <th>ID</th>
@@ -29,6 +32,7 @@
       <th>Email</th>
       <th>Role</th>
       <th>Total Absence Days</th>
+      <th>Actions</th>
     </tr>
     <% users.forEach(function(user) { %>
       <tr>
@@ -37,6 +41,16 @@
         <td><%= user.email %></td>
         <td><%= user.role %></td>
         <td><%= user.total_absence_days %></td>
+        <td>
+          <form action="/users/<%= user.id %>/edit" method="GET">
+            <button>Edit</button>
+          </form>
+          <form action="/users/<%= user.id %>/delete" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Delete</button>
+          </form>
+          
+        </td>
       </tr>
     <% }); %>
   </table>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Edit Absence</title>
+  </head>
+  <body>
+    <h1>Edit Absence</h1>
+    <form action="/absences/<%= absence.id %>/editAbsence" method="POST">
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="<%= absence.start_date %>"><br>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="<%= absence.end_date %>"><br>
+        <label for="reason">Reason:</label>
+        <input type="text" id="reason" name="reason" value="<%= absence.reason %>"><br>
+        <input type="submit" value="Update Absence">
+      </form>
+      
+  </body>
+</html>

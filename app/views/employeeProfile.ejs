@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Employee Menu</title>
+    <style>
+      .container {
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+
+h1 {
+  color: #03256C;
+  font-size: 2em;
+  text-align: center;
+}
+
+.info {
+  margin: 30px 0;
+  text-align: center;
+}
+
+p {
+  color: #1768AC;
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+button {
+  background-color: #06BEE1;
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2541B2;
+}
+
+    </style>
+  </head>
+  <body>
+    <h1>Welcome <%= employee.name %>!</h1>
+    <p>Name: <%= employee.name %></p>
+    <p>Email: <%= employee.email %></p>
+    <p>Role: <%= employee.role %></p>
+    <p>Total Absence Days: <%= employee.total_absence_days %></p>
+    <form action="/absences" method="GET">
+      <input type="hidden" name="employeeId" value="<%= employee.id %>">
+      <input type="submit" value="Manage Absences">
+    </form>
+  </body>
+</html>
