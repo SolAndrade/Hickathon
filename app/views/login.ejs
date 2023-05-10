@@ -64,10 +64,16 @@
     text-align: center;
     color: #FFFFFF;
   }
+  .logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
     </style>
   </head>
   <body>
     <div class="container">
+      <!-- <img class="logo" src="../../public/img/42MalagaWhite.png" alt="Logo 42">
+      <img class="logo" src="../../public/img/Hicron_Primary_Logotype_RGB.jpg" alt="Logo Hicron"> -->
       <form class="form" method="POST" action="/login" (ngSubmit)="onSubmit()">
         <h1>Login</h1>
         <input type="email" name="email" placeholder="Email" [(ngModel)]="email" required>

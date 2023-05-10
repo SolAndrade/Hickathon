@@ -1,5 +1,4 @@
 const userRouter = require('./app/routes/userRouter');
-const absencesRouter = require('./app/routes/absencesRouter');
 const path = require('path');
 const express = require('express');
 const app = express();
@@ -27,11 +26,13 @@ app.listen(3000, () => {
 
 //Home route
 app.use('/', userRouter);
+// app.use('/users', absencesRouter);
+// app.use('/absences', absencesRouter);
 
 app.use(express.urlencoded({ extended: true }));
 
 // Create a new user with a hashed password and store it in the database
-async function createUserEmployee(name, email, password, role) {
+async function createUser(name, email, password, role) {
   try {
     // Generate a salt for the password hash
     const salt = await bcrypt.genSalt(10);
@@ -49,29 +50,6 @@ async function createUserEmployee(name, email, password, role) {
 
     console.log(`User ${user.email} created with ID ${user.id}`);
     createAbsence(user.id, '2023-05-16', '2023-05-18', 'Vacation');
-    createAbsence(user.id, '2023-05-16', '2023-05-18', 'medical issue');
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function createUserManager(name, email, password, role) {
-  try {
-    // Generate a salt for the password hash
-    const salt = await bcrypt.genSalt(10);
-
-    // Hash the password using the salt
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Create the user in the database with the hashed password
-    const user = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      role,
-    });
-
-    console.log(`User ${user.email} created with ID ${user.id}`);
   } catch (error) {
     console.error(error);
   }
@@ -92,5 +70,6 @@ async function createAbsence(user_id, start_date, end_date, reason) {
   }
 }
 
-createUserEmployee('jane', 'jane@example.com', 'password123', 'employee');
-createUserManager('pablo', 'pablo@example.com', 'password123', 'manager');
+// Create users
+createUser('jane', 'jane@example.com', 'password123', 'employee');
+createUser('pablo', 'pablo@example.com', 'password123', 'manager');
